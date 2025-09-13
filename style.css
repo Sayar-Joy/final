@@ -1,0 +1,1191 @@
+/* =========================
+   Base Styles
+   ========================= */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+  background: #000;
+  color: #fff;
+  /* Sticky footer layout */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Breadcrumbs
+   ========================= */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  margin: 12px 16px;
+  color: #bcbcbc;
+}
+.breadcrumb a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb .sep {
+  opacity: 0.5;
+}
+.breadcrumb .current {
+  color: #e5e5e5;
+  font-weight: 600;
+}
+
+/* =========================
+   Navbar Layout
+   ========================= */
+.custom-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0.3rem 0.5rem; /* add slight vertical padding */
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Responsive horizontal padding for larger screens */
+@media (min-width: 992px) {
+  .custom-navbar {
+    padding: 0.4rem 3rem; /* add slight vertical padding */
+  }
+}
+@media (min-width: 1200px) {
+  .custom-navbar {
+    padding: 0.5rem 6vw; /* add slight vertical padding */
+  }
+}
+
+/* Prevent flex/grid children from overflowing */
+.custom-navbar > * {
+  min-width: 0;
+}
+
+/* =========================
+   Navbar Center (Search)
+   ========================= */
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   Search Form
+   ========================= */
+.search-form {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  width: 18rem;
+  min-width: 13rem; /* Always at least 13rem wide */
+  max-width: 100%;
+  height: 34px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  /* overflow: hidden;  Uncomment if you want to clip overflowing children */
+}
+
+.search-form input {
+  border: none;
+  background: transparent;
+  padding: 0 8px;
+  font-size: 15px;
+  outline: none;
+  flex: 1 1 0;
+  min-width: 0;
+  color: #222;
+}
+
+.search-form button {
+  border: none;
+  color: #e50914; /* Default icon color */
+  background: transparent; /* Only red on hover */
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 0 10px;
+  height: 100%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-form button:hover {
+  background: #e50914; /* Red on hover */
+  color: #fff; /* White icon on hover */
+}
+
+/* =========================
+   Navigation Links
+   ========================= */
+.nav-right ul,
+.mobile-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem; /* Horizontal gap for desktop, overridden for mobile */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-right a,
+.mobile-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  position: relative;
+  padding: 4px 0;
+}
+
+/* Active link underline */
+.nav-right a.active::after,
+.mobile-nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e50914;
+}
+
+/* =========================
+   Hamburger Menu (Mobile)
+   ========================= */
+.hamburger {
+  display: none;
+}
+
+/* =========================
+   Mobile Styles (≤768px)
+   ========================= */
+@media (max-width: 768px) {
+  .custom-navbar {
+    position: relative; /* Anchor dropdown */
+  }
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .nav-right {
+    display: none; /* Hide desktop links */
+  }
+
+  .mobile-nav {
+    /* Dropdown anchored to right, width fits content */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    width: auto; /* Let content decide width */
+    border-radius: 0 0 0 12px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: max-height 200ms ease, opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .mobile-nav.show {
+    max-height: 320px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align links to the right */
+    gap: 1rem; /* Vertical gap between links */
+    padding: 0.75rem 0.5rem;
+    margin: 0;
+  }
+
+  .mobile-nav a {
+    text-align: right;
+    width: 100%;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Hide mobile nav on desktop */
+.mobile-nav {
+  display: none;
+}
+
+/* Show mobile nav only on mobile */
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: block;
+  }
+}
+
+/* =========================
+   Very Small Screens (≤576px)
+   ========================= */
+@media (max-width: 576px) {
+  .custom-navbar {
+    row-gap: 0;
+    padding: 0.2rem 0.6rem; /* add slight vertical padding */
+  }
+  .search-form {
+    width: 13rem;
+    min-width: 13rem;
+    height: 28px;
+  }
+  .search-form input {
+    font-size: 13px;
+  }
+}
+
+/* =========================
+   Responsive Logo
+   ========================= */
+.logo {
+  height: 36px; /* slightly larger */
+  max-width: 140px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 30px; /* slightly larger */
+    max-width: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo {
+    height: 24px; /* slightly larger */
+    max-width: 80px;
+  }
+}
+
+/* =========================
+   Main Container Padding
+   ========================= */
+/* Add padding to all sides for main-container */
+#main-container {
+  padding: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  #main-container {
+    padding: 2.5rem;
+  }
+}
+
+/* --- Buttons --- */
+#header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 0; /* added vertical padding (top + bottom) */
+}
+
+/* Slightly more vertical space on larger screens */
+@media (min-width: 900px) {
+  #header-container {
+    padding: 1rem 0;
+  }
+}
+
+.red-button {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.red-button:hover {
+  background: #b20710;
+}
+
+.arrow {
+  margin-left: 0.5rem;
+  font-size: 0.6rem;
+  transition: transform 0.2s;
+}
+
+/* Arrow animation: move right on hover instead of left */
+.red-button:hover .arrow {
+  transform: translateX(0.2rem); /* Move arrow to the right */
+}
+
+/* =========================
+   Heading Styles
+   ========================= */
+/* Make h5 font size grow with screen width, but even smaller */
+h5 {
+  font-size: clamp(0.85rem, 1vw + 0.6rem, 1.1rem);
+  /* 
+    - Minimum: 0.95rem
+    - Grows gently with viewport width
+    - Maximum: 1.2rem
+  */
+  margin: 0.5em 0;
+}
+
+/* =========================
+   Footer Styles
+   ========================= */
+/* Center footer content and set font size smaller than h5 */
+footer.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.6rem 0; /* more compact top/bottom padding */
+  background: rgba(17, 17, 17, 0.85); /* semi-transparent */
+  color: #fff;
+  /* Push footer to the bottom when content is short */
+  margin-top: auto;
+}
+
+footer.foot p {
+  margin: 0.2em 0;
+  font-size: clamp(0.4rem, 0.6vw + 0.2rem, 0.9rem); /* smaller, compact */
+  opacity: 0.7; /* lower emphasis */
+}
+
+/* =========================
+   Slider Styles
+   ========================= */
+/* Slider styles with 16:9 aspect ratio */
+.slider {
+  width: 100%;
+  max-width: 900px;
+  margin: 1.5rem auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+  background: #111;
+  position: relative;
+  aspect-ratio: 16 / 9; /* Ensures 16:9 ratio */
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+  will-change: transform;
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  object-fit: cover;
+  height: 100%;
+  background: #222;
+  display: block;
+}
+
+/* Responsive: fallback for browsers without aspect-ratio support */
+@supports not (aspect-ratio: 16 / 9) {
+  .slider {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 ratio fallback */
+    position: relative;
+  }
+  .slides,
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+  }
+}
+
+/* Slider dots (dashes) styles */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.1rem;
+  z-index: 2;
+}
+
+.slider-dot {
+  display: inline-block;
+  width: 1.3rem; /* reduced from 2.2rem */
+  height: 0.18rem; /* reduced from 0.25rem */
+  border-radius: 0.12rem;
+  background: #fff3;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.slider-dot.active {
+  background: #e50914;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .slide {
+    height: 100%;
+  }
+}
+
+/* Fix: show full image (no crop) between 600px and 368px while keeping 16:9 wrapper */
+@media (max-width: 600px) and (min-width: 368px) {
+  .slider {
+    aspect-ratio: 16 / 9; /* keep ratio */
+    height: auto;
+    background: #000; /* letterbox background */
+  }
+  .slides {
+    height: 100%;
+  }
+  .slide {
+    height: 100%;
+    object-fit: contain; /* show entire image */
+    object-position: center center;
+    background: #000; /* fill empty space */
+  }
+}
+
+/* Very small screens: still show full image, allow a bit shorter height if space tight */
+@media (max-width: 367px) {
+  .slider {
+    aspect-ratio: auto;
+    height: 160px; /* fallback fixed height */
+    background: #000;
+  }
+  .slides,
+  .slide {
+    height: 100%;
+  }
+  .slide {
+    object-fit: contain;
+    object-position: center center;
+    background: #000;
+  }
+}
+
+/* Remove old forced height that caused cropping */
+@media (max-width: 600px) {
+  .slide {
+    /* height: 180px;  <-- remove this line (override) */
+    height: 100%;
+  }
+}
+
+/* =========================
+   Movies / Series toggle row
+   ========================= */
+/* Media toggle as two equal columns; links centered and underline spans whole column */
+.media-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns that split the main container */
+  width: 100%; /* fill the available width of main-container */
+  max-width: none;
+  margin: 1rem 0 0; /* sit inside main-container padding */
+  gap: 0;
+  box-sizing: border-box;
+}
+
+/* Make each link occupy its column and center its content */
+.media-toggle a {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center text horizontally */
+  width: 100%;
+  height: 48px; /* consistent clickable area */
+  color: #6b6b6b;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 3px solid transparent; /* full-width underline per column */
+  transition: color 180ms ease, border-color 180ms ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.media-toggle a.active {
+  color: #e50914;
+  border-bottom-color: #e50914;
+}
+
+.media-toggle a:not(.active):hover {
+  color: #e50914;
+}
+
+/* movie card */
+
+/* Existing Movie Card Styles (from previous response) */
+.movie-card {
+  background-color: #343a40;
+  color: #ffffff;
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin-bottom: 0.35rem; /* reduced gap */
+}
+
+.movie-card h6 {
+  margin-bottom: 0.2rem; /* reduced gap */
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-left: 0.2rem;
+}
+
+.movie-card p {
+  color: #adb5bd;
+  font-size: 0.6rem;
+  margin-bottom: 0; /* keep no extra bottom space */
+  margin-left: 0.2rem;
+}
+
+/* ==== Compact movie card overrides (reduce vertical size without altering image aspect ratio) ==== */
+.movie-card {
+  padding: 0.2rem 0.25rem; /* less internal space */
+  border-radius: 1rem;
+}
+
+.movie-card img {
+  margin-bottom: 0.25rem; /* tighter gap below image */
+  display: block;
+  width: 100%;
+  height: auto; /* preserves intrinsic aspect ratio */
+}
+
+.movie-card h6 {
+  margin: 0 0 0.15rem;
+  font-size: 0.55rem;
+  line-height: 1.15;
+  display: -webkit-box;
+  line-clamp: 1; /* standard */
+  -webkit-line-clamp: 1; /* single line to save height */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-card p {
+  margin: 0;
+  line-height: 1.1;
+  font-size: 0.48rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Slightly larger on wider screens while still compact */
+@media (min-width: 576px) {
+  .movie-card {
+    padding: 0.25rem 0.3rem;
+  }
+  .movie-card h6 {
+    font-size: 0.65rem;
+  }
+  .movie-card p {
+    font-size: 0.55rem;
+  }
+}
+
+@media (min-width: 993px) {
+  .movie-card {
+    padding: 0.3rem 0.35rem;
+  }
+  .movie-card h6 {
+    font-size: 0.7rem;
+  }
+  .movie-card p {
+    font-size: 0.6rem;
+  }
+}
+
+/* ===== Responsive movie grid =====
+   Small screens: 3 columns (2 rows for 6 items)
+   Large screens: 6 columns (single row for 6 items)
+*/
+.movie-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0 0 1.2rem;
+}
+
+@media (min-width: 900px) {
+  .movie-card-container {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Ensure cards fill their grid cell */
+.movie-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Remove underlines for movie cards (and ensure they inherit colors) */
+a.movie-card,
+a.movie-card:link,
+a.movie-card:visited,
+a.movie-card:hover,
+a.movie-card:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Also make sure inner text elements don't get underlines */
+a.movie-card h6,
+a.movie-card p {
+  text-decoration: none;
+}
+
+/* Make poster area a fixed aspect box and force image to fill it (no resolution-based sizing) */
+.movie-card .movie-poster-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* poster shape — change to 3/4 or 16/9 if you prefer */
+  overflow: hidden;
+  border-radius: 1rem;
+  display: block;
+  margin-bottom: 0.25rem;
+  box-sizing: border-box;
+}
+
+/* Ensure the image fills the wrapper while preserving aspect ratio (may crop) */
+.movie-card .movie-poster-wrap img,
+.movie-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: inherit;
+}
+
+/* Optional: slightly reduce poster height visually by adjusting aspect-ratio */
+@supports (aspect-ratio: auto) {
+  /* no-op: aspect-ratio already used above */
+}
+
+/* ===== Movie/Series Detail Page Styles ===== */
+.movie-container {
+  max-width: auto;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  background: #181818;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.row-custom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.col-img {
+  flex: 1 1 280px; /* give the image column a bit more space */
+  max-width: 360px; /* allow larger poster on wide screens */
+  min-width: 180px;
+  display: flex;
+  align-items: center; /* center vertically */
+  justify-content: center; /* center horizontally */
+  margin: 0 auto;
+}
+
+.text-center-custom {
+  text-align: center;
+}
+
+.movie-poster {
+  width: 100%;
+  max-width: 320px; /* increased from 260px */
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  background: #222;
+  object-fit: cover;
+  aspect-ratio: 2/3;
+  height: auto;
+  display: block;
+  transition: transform 0.18s ease;
+}
+
+/* Slight pop on hover (desktop) */
+@media (hover: hover) and (min-width: 700px) {
+  .movie-poster:hover {
+    transform: scale(1.02);
+  }
+}
+
+.col-info {
+  flex: 2 1 340px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.col-info h2 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+.col-info p {
+  margin: 0.3em 0;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.genre-list {
+  margin: 0.7em 0 1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.genre-link {
+  text-decoration: none;
+}
+
+.genre-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45em 1.1em; /* slightly bigger */
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #eaecef;
+  background: rgba(255, 255, 255, 0.06); /* glass */
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px; /* pill */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.genre-badge:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.genre-badge:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.genre-badge:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 158, 217, 0.55), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Genre buttons container layout */
+#genres-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+}
+
+@media (max-width: 576px) {
+  .genre-badge {
+    padding: 0.4em 0.95em;
+    font-size: 0.9rem;
+  }
+}
+
+.action-buttons {
+  margin: 2rem 0 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-red {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.3em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-red:hover {
+  background: #b20710;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 0.6em 1.3em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: #181818;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #222;
+  border: none;
+  padding: 0.6em 1.3em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-warning:hover {
+  background: #ffb300;
+}
+
+/* Telegram primary button */
+.btn-telegram {
+  background: #229ed9; /* Telegram brand blue */
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.3em;
+  border-radius: 0.5em;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-telegram:hover {
+  background: #1b89c5;
+}
+
+.related-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+.related-header h5 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* ===== Genre / demo component styles (restored) ===== */
+.wrap {
+  padding: 16px clamp(8px, 3vw, 24px);
+  box-sizing: border-box;
+}
+
+.wrap > h5 {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+/* horizontal scroller for genres */
+.scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 128px; /* smaller again */
+  gap: 10px; /* slightly tighter */
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px clamp(8px, 3vw, 24px) 14px clamp(8px, 3vw, 24px); /* equal left/right */
+  scroll-snap-type: none !important; /* free scrolling: force-disable snapping */
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+/* Explicitly disable any child snap alignment to prevent snapping to card starts */
+.scroller > * {
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+
+/* visual scrollbar tweak */
+.scroller::-webkit-scrollbar {
+  height: 8px;
+}
+.scroller::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+/* each genre card */
+.genre {
+  text-decoration: none;
+  color: inherit;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 8px;
+  align-items: start;
+}
+
+/* mosaic (image block) */
+.mosaic {
+  width: 100%;
+  height: 180px; /* smaller again */
+  border-radius: 1rem;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 3px;
+  background: #151515;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* equal sized images inside mosaic */
+.mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+  background: #0f0f0f;
+}
+
+/* hover effect */
+.genre:hover .mosaic img {
+  transform: scale(1.04);
+}
+
+/* label under mosaic */
+.label {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.8rem; /* smaller label */
+  margin-top: 6px;
+  color: #fff;
+}
+
+/* drag cursor styles when enabled */
+.scroller.drag-enabled {
+  cursor: grab;
+}
+.scroller.drag-enabled:active {
+  cursor: grabbing;
+}
+
+/* responsive adjustments */
+@media (max-width: 560px) {
+  .scroller {
+    grid-auto-columns: 106px; /* smaller on mobile */
+    gap: 6px; /* keep touch-friendly spacing */
+    padding: 8px 12px;
+  }
+  .mosaic {
+    height: 135px; /* smaller on mobile */
+  }
+  .label {
+    font-size: 0.7rem; /* smaller label on mobile */
+  }
+}
+
+/* ensure genre cards don't inherit underline from anchor resets */
+.genre,
+.genre * {
+  text-decoration: none;
+}
+
+/* ===== Responsive YouTube embed for detail page - keep this after genre styles ===== */
+.movie-container .youtube-embed-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 90%; /* cap on large screens */
+  margin: 1.25rem auto; /* center horizontally and give vertical gap */
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0; /* required for the padding-bottom trick */
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #000;
+  box-sizing: border-box; /* avoid padding/width conflicts */
+}
+
+/* ensure iframe fills the wrapper and retains ratio */
+.movie-container .youtube-embed-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: inherit;
+  background: #000;
+}
+
+/* Small screen tweak: keep ratio but allow full width */
+@media (max-width: 900px) {
+  .movie-container .youtube-embed-wrap {
+    max-width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 0.8rem;
+  }
+}
+
+/* Extra specificity to prevent other image rules from affecting iframe */
+.movie-container .youtube-embed-wrap,
+.movie-container .youtube-embed-wrap iframe {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Pagination controls styling (centered) ===== */
+.pagination {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0 2.5rem;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+/* page buttons */
+.pagination .pg-btn {
+  background: #1f1f1f;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 40px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.12s ease, transform 0.06s ease;
+}
+
+/* hover */
+.pagination .pg-btn:hover:not([disabled]) {
+  background: #fff;
+  color: #111;
+  transform: translateY(-2px);
+}
+
+/* active page */
+.pagination .pg-btn.active {
+  background: #e50914;
+  color: #fff;
+  border-color: transparent;
+  transform: none;
+}
+
+/* disabled (Prev/Next at bounds) */
+.pagination .pg-btn[disabled] {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+}
+
+/* ellipsis text */
+.pagination .pg-ellipsis {
+  color: #cfcfcf;
+  padding: 0 8px;
+  font-weight: 600;
+}
+
+/* ensure pagination doesn't overflow on very small screens */
+@media (max-width: 420px) {
+  .pagination {
+    gap: 6px;
+    margin: 1rem 8px;
+  }
+  .pagination .pg-btn {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    min-width: 34px;
+  }
+}
+
+.popular-movies-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  font-weight: 700;
+  color: #fff;
+}
+.trending-movies-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 1.5rem 0;
+  font-weight: 700;
+  color: #fff;
+}

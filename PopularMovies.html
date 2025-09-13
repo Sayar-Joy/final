@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Popular Movies</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <nav id="breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+    <div id="ad-container"></div>
+
+    <main id="main-container">
+      <h1 class="trending-movies-title">Popular Movies</h1>
+
+      <!-- required by js/allMovies.js -->
+      <div
+        id="trending-movies-container-all"
+        class="movie-card-container"
+      ></div>
+      <!-- pagination will be injected as #trending-movies-container-all-pagination -->
+    </main>
+
+    <script src="js/breadcrumbs.js"></script>
+    <script src="js/allMovies.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="navbar-container"></div>
+    <nav id="breadcrumb" class="breadcrumb" aria-label="Breadcrumb"></nav>
+    <div id="main-container">
+      <div id="ad-container"></div>
+
+      <!-- Removed media toggle: this page is movies-only -->
+
+      <div id="header-container">
+        <h5>Recently Added Movies</h5>
+        <a href="RecentMovies.html" class="red-button"
+          >See all<span class="arrow">→</span></a
+        >
+      </div>
+      <div class="movie-card-container" id="popular-movies-container"></div>
+
+      <div id="header-container">
+        <h5>Popular Movies</h5>
+        <a href="PopularMovies.html" class="red-button"
+          >See all<span class="arrow">→</span></a
+        >
+      </div>
+      <div class="movie-card-container" id="trending-movies-container"></div>
+    </div>
+    <footer class="foot">
+      <p>
+        All recap videos, background commentary, summaries, and
+        Burmese-subtitled translations on Yangon TV are original creations of
+        ours. However, Yangon TV does not hold the copyright to the underlying
+        films. We fully respect and comply with all applicable copyright
+        laws—both domestic and international—pertaining to the original creators
+        and rights holders. If you believe that your copyrighted work has been
+        used in a manner constituting infringement, please contact us via
+        <a href="mailto:yagontvoffice@gmail.com">yagontvoffice@gmail.com</a>.
+      </p>
+    </footer>
+    <script src="js/breadcrumbs.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (typeof loadNavbar === "function") loadNavbar();
+        if (typeof renderAdHtml === "function") renderAdHtml();
+      });
+    </script>
+    <script src="js/movies.js"></script>
+  </body>
+</html>
