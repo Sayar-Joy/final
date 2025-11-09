@@ -51,6 +51,7 @@
       "movies.html": "Movies",
       "series.html": "Series",
       "genre.html": "Genres",
+      "shorts.html": "Shorts",
       "aboutUs.html": "About Us",
       "reachUs.html": "Reach Us",
     };
